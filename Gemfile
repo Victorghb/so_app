@@ -31,6 +31,11 @@ gem 'rspec-core', '>=3.4.4'
 
 gem 'test-unit'
 
+gem 'faker', '>=1.6.6'
+gem 'will_paginate', '>=3.0.4'
+gem 'bootstrap-will_paginate', '>=0.0.9'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -48,11 +53,13 @@ group :development, :test do
   
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'pry'
   gem 'rspec-rails', '>=2.13.1'
   
 end
 
 group :test do
+  gem 'factory_girl_rails', '4.2.1'
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '>=2.1.0'
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
