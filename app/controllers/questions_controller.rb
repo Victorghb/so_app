@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  
   before_action :signed_in_user
   before_action :correct_user,   only: :destroy
 
@@ -8,6 +9,8 @@ class QuestionsController < ApplicationController
 
   def show
   	@question = Question.find(params[:id])
+    @answers = @question.answers.paginate(page: params[:page])
+    @answer = @question.answers.build
   end
 
   def new
