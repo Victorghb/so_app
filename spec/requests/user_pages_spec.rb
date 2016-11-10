@@ -5,15 +5,17 @@ describe "Authentication" do
   subject { page }
 
   describe "signin page" do
-    before { visit users_path }
+    before { visit signin_path }
 
     it { should have_content('Sign in') }
     it { should have_title('Sign in') }
   end
+
   describe "authorization" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+
       describe "in the Questions controller" do
 
         describe "submitting to the create action" do
@@ -99,10 +101,16 @@ describe "User pages" do
   end
 
   describe "profile page" do
-    # Replace with code to make a user variable
-    let(:user){visit '/signup'}
-
-    it { should have_content(User.name) }
-    it { should have_title(user.name) }
+    
+    let(:user){ User.first }
+    
+    it { 
+      visit user_path User.first.id
+      should have_content(user.name) 
+    }
+    it {
+      visit user_path User.first.id
+      should have_title(user.name) 
+    }
   end
 end

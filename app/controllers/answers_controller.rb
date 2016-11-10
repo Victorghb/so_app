@@ -18,7 +18,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
       flash[:success] = "answer created!"
-      redirect_to question
+      redirect_to '/'
     else
       flash[:notice] = "Sorry, but your answer wasn`t created!"
       @feed_items = []

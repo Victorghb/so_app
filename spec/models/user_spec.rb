@@ -16,44 +16,33 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
-  it { should respond_to(:microposts) }
-  it { should respond_to(:feed) }
+  it { should respond_to(:questions) }
 
   it { should be_valid }
 
-  describe "micropost associations" do
+  describe "question associations" do
 
     before { @user.save }
-    let!(:older_micropost) do
-      FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+    let!(:older_question) do
+      FactoryGirl.create(:question, user: @user, created_at: 1.day.ago)
     end
-    let!(:newer_micropost) do
-      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+    let!(:newer_question) do
+      FactoryGirl.create(:question, user: @user, created_at: 1.hour.ago)
     end
 
-    it "should have the right microposts in the right order" do
-      expect(@user.microposts.to_a).to eq [newer_micropost, older_micropost]
+    it "should have the right questions in the right order" do
+      expect(@user.questions.to_a).to eq [newer_question, older_question]
     end
-    it "should destroy associated microposts" do
-      microposts = @user.microposts.to_a
+    it "should destroy associated questions" do
+      questions = @user.questions.to_a
       @user.destroy
-      expect(microposts).not_to be_empty
-      microposts.each do |micropost|
-        expect(Micropost.where(id: micropost.id)).to be_empty
+      expect(questions).not_to be_empty
+      questions.each do |question|
+        expect(question.where(id: question.id)).to be_empty
       end
     end
   end
-
-  describe "status" do
-    let(:unfollowed_post) do
-      FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
-  end
-
-      its(:feed) { should include(newer_micropost) }
-      its(:feed) { should include(older_micropost) }
-      its(:feed) { should_not include(unfollowed_post) }
-  end
-
+  
   describe "when name is not present" do
     before { @user.name = " " }
     it { should_not be_valid }
