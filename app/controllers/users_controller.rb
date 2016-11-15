@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page])
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
     @questions = @user.questions.paginate(page: params[:page])
     @question = @user.questions.build
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the SO App!"
       redirect_to @user
     else
-      render 'new'
+      render new_user_path
     end
   end
 

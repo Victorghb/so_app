@@ -1,4 +1,4 @@
-<%- all_questions.each do |question| %>
+<% all_questions.each do |question| %>
 	<li>
 	  <span class="label"><%= link_to  question.label, question  %></span>
 	  <span class="content"><%= question.content %></span>
@@ -6,7 +6,7 @@
 	    Posted <%= time_ago_in_words(question.created_at) %> ago.
 	  </span>
 	  <% if current_user?(question.user) %>
-	    <%= link_to "delete", question, method: :delete,data: { confirm: "You sure?" },title: question.content %>
+	    <%= link_to  "delete", question, method: :delete, data: { confirm: "You sure?" },title: question.content %>
 	  <% end %>
 	</li>
 <% end %>

@@ -1,16 +1,16 @@
 class QuestionsController < ApplicationController
-  
   before_action :signed_in_user
   before_action :correct_user,   only: :destroy
 
   def index
-  	@questions = Question.all
+  	@questions = Question.all.paginate(page: params[:page])
   end
 
   def show
-  	@question = Question.find(params[:id])
+  	@question = Question.find_by_id(params[:id])
     @answers = @question.answers.paginate(page: params[:page])
     @answer = @question.answers.build
+    @answers_count = @question.answers.count
   end
 
   def new
@@ -21,22 +21,20 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
     if @question.save
       flash[:success] = "question created!"
-      redirect_to '/'
+      redirect_to home_path
     else
       @feed_items = []
-      render 'static_pages/home'
+      render home_path
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
-    @question.destroy
-    redirect_to '/'
+    @question = Question.find_by_id(params [:id])
+    if @question.present?
+      @question.destroy
+      redirect_to home_path
+    end
+    redirect_to home_path
   end
 
   private
@@ -46,8 +44,8 @@ class QuestionsController < ApplicationController
     end
 
     def correct_user
-      @users = User.all
-      @question = users.questions.find_by(id: params[:id])
+      @user = User.find_by_id(params[:id])
+      @question = @user.questions.find_by_id(params[:id])
       redirect_to root_url if @question.nil?
     end
 end

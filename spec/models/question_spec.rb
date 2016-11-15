@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Question do
 
   let(:user) { FactoryGirl.create(:user) }
+  
   before do
     @question = Question.new(label: "label text", content: "Lorem ipsum", user_id: user.id)
   end

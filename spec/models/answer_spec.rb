@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Answer do
-
   let(:user) { FactoryGirl.create(:user) }
   let(:question) {FactoryGirl.create(:question)}
+  
   before do
     @answer = Answer.new(content: "Lorem ipsum", user_id: user.id, user_name: user.name, question_id: question.id)
   end

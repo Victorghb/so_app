@@ -56,7 +56,6 @@ describe "User pages" do
   describe "signup page" do
 
     before { visit signup_path }
-
     let(:submit) { "Create my account" }
 
     describe "with invalid information" do
@@ -100,8 +99,7 @@ describe "User pages" do
     end
   end
 
-  describe "profile page" do
-    
+  describe "profile page" do  
     let(:user){ User.first }
     
     it { 

@@ -9,9 +9,6 @@
   <% if signed_in? %>
   <div class="row">
     <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
       <section>     
       </section>
     </aside>
@@ -23,7 +20,7 @@
     <% else %>
       <h1>SO App</h1>
       <p>   
-        <a href="/signin">Sign in</a> to use content or <a href="/signup">Create a new account</a>.
+        <%= link_to 'Sign in', signin_path %> to use content or <a href="/signup">Create a new account</a>.
       </p>
     <% end %>
   </body>
