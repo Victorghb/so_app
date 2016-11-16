@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include Concerns::SessionsHelper
+  include Concerns::AuthenticationConcern
 	# Returns the full title on a per-page basis.
   def full_title(page_title)
     base_title = "SO"

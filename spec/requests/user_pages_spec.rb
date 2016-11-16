@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 describe "Authentication" do
 
@@ -36,8 +36,8 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:m1) { FactoryGirl.create(:question, user: user, content: "Foo") }
-    let!(:m2) { FactoryGirl.create(:question, user: user, content: "Bar") }
+    let!(:quest1) { FactoryGirl.create(:question, user: user, content: "Foo") }
+    let!(:quest2) { FactoryGirl.create(:question, user: user, content: "Bar") }
 
     before { visit user_path(user) }
 
@@ -45,8 +45,8 @@ describe "User pages" do
     it { should have_title(user.name) }
 
     describe "questions" do
-      it { should have_content(m1.content) }
-      it { should have_content(m2.content) }
+      it { should have_content(quest1.content) }
+      it { should have_content(quest2.content) }
       it { should have_content(user.questions.count) }
     end
   end
@@ -100,15 +100,12 @@ describe "User pages" do
   end
 
   describe "profile page" do  
-    let(:user){ User.first }
+    let(:user){ FactoryGirl.create(:user) }
     
-    it { 
-      visit user_path User.first.id
+    it "should have right texts" do
+      visit user_path user
       should have_content(user.name) 
-    }
-    it {
-      visit user_path User.first.id
       should have_title(user.name) 
-    }
+    end
   end
 end

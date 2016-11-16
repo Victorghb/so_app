@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 describe "Static pages" do 
 	let(:base_title) { "SO" }
@@ -12,7 +12,7 @@ describe "Static pages" do
 	end
 
 	describe "Home page" do
-		before {visit '/'}
+		before {visit home_path}
 		it { should have_title("#{base_title} | Home") }
 	end
 end

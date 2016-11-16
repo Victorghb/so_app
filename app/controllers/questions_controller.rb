@@ -21,10 +21,11 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
     if @question.save
       flash[:success] = "question created!"
-      redirect_to home_path
+      redirect_to root_path
     else
       @feed_items = []
-      render home_path
+      flash[:error] = "question not created!"
+      redirect_to root_path
     end
   end
 
@@ -32,9 +33,9 @@ class QuestionsController < ApplicationController
     @question = Question.find_by_id(params [:id])
     if @question.present?
       @question.destroy
-      redirect_to home_path
+      redirect_to root_path
     end
-    redirect_to home_path
+    redirect_to root_path
   end
 
   private

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users, :questions, :answers
   resources :sessions, only: [:new, :create, :destroy]
-
+  root to: 'static_pages#home'
   get '/home' => 'static_pages#home'
   get '/help' => 'static_pages#help'
   get '/signup' => 'users#new'
