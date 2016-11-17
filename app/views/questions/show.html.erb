@@ -6,6 +6,7 @@
   </span>
   <% if current_user.id == @question.user_id %>
     <%= link_to "delete", question_path , method: :delete, data: { confirm: "You sure?" }, title: @question.content %>
+    <%= link_to "edit", edit_question_path(@question) %>
   <% end %>
 </li>	
 <% if @question.answers.any? %>

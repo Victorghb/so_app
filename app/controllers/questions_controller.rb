@@ -29,13 +29,30 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.find_by_id(params[:id])
+  end
+
+  def update
+    @question = Question.find_by_id(params[:id])
+    if @question.update_attributes(question_params)
+      flash[:success] = "Question updated"
+      redirect_to @question
+    else
+      flash[:error] = "Question was not updated"
+      render 'edit'
+    end
+  end
+
   def destroy
-    @question = Question.find_by_id(params [:id])
     if @question.present?
       @question.destroy
+      flash[:success] = "question destoryed!"
+      redirect_to root_path
+    else
+      flash[:error] = "question not destoryed!"
       redirect_to root_path
     end
-    redirect_to root_path
   end
 
   private
@@ -46,7 +63,7 @@ class QuestionsController < ApplicationController
 
     def correct_user
       @user = User.find_by_id(params[:id])
-      @question = @user.questions.find_by_id(params[:id])
+      @question = Question.find_by_id(params[:id])
       redirect_to root_url if @question.nil?
     end
 end

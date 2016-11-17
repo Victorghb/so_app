@@ -31,6 +31,7 @@ aside {
 }
 
 .gravatar {
+
   float: left;
   margin-right: 10px;
 }
@@ -38,12 +39,12 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width:700px;
-  max-width: 50%;
+  max-width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
 ul{
+  position: relative;
   text-align: center;
   self-align: center;
 }
@@ -52,5 +53,5 @@ ul li{
 }
 
 input {
-  height: auto !important;
+  height: auto;
 }

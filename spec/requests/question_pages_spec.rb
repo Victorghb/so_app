@@ -32,4 +32,35 @@ describe "question pages", type: :request do
       end
     end
   end
+
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:question) { FactoryGirl.create(:question) }
+    
+    before { sign_in user }
+    before { visit edit_question_path(question) }
+
+    describe "page" do
+      it { should have_content("Update your question") }
+      it { should have_title("Edit question") }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+    describe "with valid information" do
+      let(:new_content)  { "New Content" }
+      before do
+        fill_in "Content",             with: new_content
+        click_button "Save changes"
+      end
+
+      it { should have_title(new_content) }
+      it { should have_selector('div.alert.alert-success') }
+
+      specify { expect(question.reload.content).to  eq new_content }
+    end
+  end
 end

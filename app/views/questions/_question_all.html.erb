@@ -7,6 +7,7 @@
 	  </span>
 	  <% if current_user?(question.user) %>
 	    <%= link_to  "delete", question, method: :delete, data: { confirm: "You sure?" },title: question.content %>
+	    <%= link_to "edit", edit_question_path(question) %>
 	  <% end %>
 	</li>
 <% end %>
