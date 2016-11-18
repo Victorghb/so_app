@@ -25,6 +25,21 @@ class AnswersController < ApplicationController
     end
   end
 
+  def edit
+    @answer = Answer.find_by_id(params[:id])
+  end
+
+  def update
+    @answer = Answer.find_by_id(params[:id])
+    if @answer.update_attributes(answer_params)
+      flash[:success] = "Changes was saved"
+      redirect_to edit_answer_path(@answer)
+    else
+      flash[:error] = "Changes was not saved"
+      render edit_answer_path(@answer)
+    end
+  end
+
   def destroy
   	@answer = current_user.answers.find_by(id: params[:id])
     if @answer.present?

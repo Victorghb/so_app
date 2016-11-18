@@ -42,7 +42,6 @@ describe "question pages", type: :request do
 
     describe "page" do
       it { should have_content("Update your question") }
-      it { should have_title("Edit question") }
     end
 
     describe "with invalid information" do

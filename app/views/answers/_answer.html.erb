@@ -7,5 +7,6 @@
   </span>
   <% if current_user?(current_user) %>
     <%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" }, title: answer.content %>
+    <%= link_to "edit", edit_answer_path(answer) %>
   <% end %>
 </li>
