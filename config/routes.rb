@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get '/help' => 'static_pages#help'
   get '/signup' => 'users#new'
   get '/signin' => 'sessions#new'
-  delete '/signout' => 'sessions#destroy'
   get '/question' => 'questions#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
