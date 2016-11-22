@@ -1,0 +1,14 @@
+<% provide(:title, 'Help') %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby on Rails SO App | <%= yield(:title) %></title>
+  </head>
+  <body>
+    <h1>SO App</h1>
+    <p>
+      This is the help page for the
+      <%= link_to 'SO', home_path %> application.
+    </p>
+  </body>
+</html>

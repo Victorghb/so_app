@@ -1,0 +1,28 @@
+<% provide(:title, 'Home') %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby on Rails SO App | <%= yield(:title) %></title>
+  </head>
+  
+  <body>
+
+  <% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>     
+      </section>
+    </aside>
+    <div class="span8">
+      <h3>Question Feed</h3>
+      <%= render 'questions/question_all' %>
+    </div>
+  </div>
+    <% else %>
+      <h1>SO App</h1>
+      <p>   
+        <%= link_to 'Sign in', signin_path %> to use content or <a href="/signup">Create a new account</a>.
+      </p>
+    <% end %>
+  </body>
+</html>

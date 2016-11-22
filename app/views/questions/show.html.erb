@@ -1,0 +1,20 @@
+<li>
+  <span class="label"><%= @question.label %></span>
+  <span class="content"><%= @question.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@question.created_at) %> ago.
+  </span>
+  <% if current_user.id == @question.user_id %>
+    <%= link_to "delete", question_path , method: :delete, data: { confirm: "You sure?" }, title: @question.content %>
+    <%= link_to "edit", edit_question_path(@question) %>
+  <% end %>
+</li>	
+<% if @question.answers.any? %>
+      <h3>answers (<%= @answers_count %>)</h3>
+      <ol class="questions">
+        <%= render @answers %>
+      </ol>
+      <%= will_paginate @answers %>
+    <% end %>
+
+<%= render 'shared/answer_form' %>

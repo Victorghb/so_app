@@ -1,0 +1,12 @@
+<li>
+  <span class="content">
+  	<%= answer.content %> 	
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(answer.created_at) %> ago by <span class="answer_name"><%= answer.user_name %></span>.
+  </span>
+  <% if current_user?(current_user) %>
+    <%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" }, title: answer.content %>
+    <%= link_to "edit", edit_answer_path(answer) %>
+  <% end %>
+</li>

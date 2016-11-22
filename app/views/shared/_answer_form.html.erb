@@ -1,0 +1,10 @@
+<%= form_for(@answer) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new answer..." %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :user_name, :value => current_user.name %>
+    <%= f.hidden_field :question_id, :value => @question.id %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

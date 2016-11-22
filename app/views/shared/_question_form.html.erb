@@ -1,0 +1,9 @@
+<%= form_for(@question) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.text_field :label, placeholder: "Enter label" %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new question..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
