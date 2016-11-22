@@ -16,7 +16,6 @@
 !/log/.keep
 /tmp
 
-database.yml
 doc/
 *.swp
 *~
